@@ -4,8 +4,15 @@
 # g r a n t . m e a d o r s @ a e i . m p g . d e
 # Script to read in the data from the event and test for ringdown
 
+# These two lines are necessary
 import numpy as np
 import matplotlib.pyplot as plt
+
+# These three lines are used to create high-quality plots
+# and can be commented out for fast runs
+from matplotlib import rc
+rc('font', **{'family':'serif','serif':['Times']})
+rc('text',usetex=True)
 
 # Sampling frequency and observation time
 Fsample = 16384.0
@@ -48,6 +55,8 @@ def plotASD(xBins, asdData, fileName):
     fig = plt.figure()
     plt.plot(fftBins,H1asd)
     plt.axis([100,300,0,2e-17])
+    plt.xlabel('Frequency [Hz]')
+    plt.title('Amplitude spectral density near event time')
     fig.savefig(fileName)
     plt.close()
 
